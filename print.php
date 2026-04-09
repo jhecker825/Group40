@@ -41,7 +41,7 @@
     ?>
 
     <div class="print-header">
-        <img src="Colorify_Logo.png" alt="Colorify Logo">
+        <img src="img/Colorify_Logo.png" alt="Colorify Logo">
         <div class="print-brand">
             <h1>colorify</h1>
             <p>Color Coordinate Generator</p>

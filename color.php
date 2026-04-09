@@ -9,7 +9,7 @@
 <body>
 
 <header>
-    <img src="Colorify_Logo.png" alt="Colorify Logo" class="logo">
+    <img src="img/Colorify_Logo.png" alt="Colorify Logo" class="logo">
     <div class="brand">
         <h1>colorify</h1>
         <p>Color Coordinate Generator</p>

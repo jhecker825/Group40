@@ -9,7 +9,7 @@
 <body>
 
 <header>
-    <img src="Colorify_Logo.png" alt="Colorify Logo" class="logo">
+    <img src="img/Colorify_Logo.png" alt="Colorify Logo" class="logo">
     <div class="brand">
         <h1>colorify</h1>
         <p>Color Coordinate Generator</p>
@@ -28,7 +28,7 @@
     <h2 class="page-title">About Our Team</h2>
 
     <div class="member-card">
-        <img src="Wesley.jpg" alt="Wesley Johnson" class="member-avatar">
+        <img src="img/Wesley.jpg" alt="Wesley Johnson" class="member-avatar">
         <div class="member-info">
             <h3>Wesley Johnson</h3>
             <p class="member-role">Group Member</p>
@@ -36,13 +36,12 @@
         </div>
     </div>
 
-    <!-- Team Member 2 -->
     <div class="member-card">
-        <div class="member-avatar-placeholder">&#128100;</div>
+        <img src="img/Joseph.jpg" alt="Joseph Hecker" class="member-avatar">
         <div class="member-info">
-            <h3>[Team Member 2 Name]</h3>
+            <h3>Joseph Hecker</h3>
             <p class="member-role">Group Member</p>
-            <p>[Team Member 2 bio goes here.]</p>
+            <p>Hello, I'm Joseph Hecker, a computer science student as CSU and I am currently a senior. I am also a software engineer at CartoPac, where I work on GIS mapping software. I have experience in C# and C++.</p>
         </div>
     </div>
 

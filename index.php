@@ -9,7 +9,7 @@
 <body>
 
 <header>
-    <img src="Colorify_Logo.png" alt="Colorify Logo" class="logo">
+    <img src="img/Colorify_Logo.png" alt="Colorify Logo" class="logo">
     <div class="brand">
         <h1>colorify</h1>
         <p>Color Coordinate Generator</p>
@@ -26,7 +26,7 @@
 
 <main>
     <div class="hero">
-        <img src="Colorify_Logo.png" alt="Colorify Logo" class="hero-logo">
+        <img src="img/Colorify_Logo.png" alt="Colorify Logo" class="hero-logo">
         <h2>Welcome to Colorify</h2>
         <p>
             Colorify is a professional color coordinate sheet generator. Build custom grids,
