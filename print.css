@@ -1,0 +1,105 @@
+@media print {
+    body {
+        margin: 0;
+        padding: 0.5in;
+        color: #000;
+        background: #fff;
+    }
+    
+    .print-container {
+        page-break-after: avoid;
+    }
+    
+    nav, footer, .btn-back {
+        display: none !important;
+    }
+    
+    .print-content {
+        width: 100%;
+    }
+}
+
+@media screen {
+    .btn-back {
+        display: block;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        background-color: #003da1;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    
+    .btn-back:hover {
+        background-color: #002856;
+    }
+}
+
+.print-container {
+    max-width: 8.5in;
+    height: 11in;
+    margin: 0 auto;
+    padding: 0.5in;
+    background: white;
+    box-sizing: border-box;
+}
+
+.print-header {
+    text-align: center;
+    margin-bottom: 0.3in;
+    border-bottom: 2px solid #000;
+    padding-bottom: 0.2in;
+}
+
+.print-logo {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.print-content {
+    font-size: 11px;
+}
+
+.print-content h2 {
+    font-size: 12px;
+    margin: 0.1in 0;
+    margin-top: 0.15in;
+}
+
+.print-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0.15in;
+    font-size: 10px;
+}
+
+.print-content th,
+.print-content td {
+    border: 1px solid #000;
+    padding: 4px;
+    text-align: center;
+}
+
+.print-content .color-table th,
+.print-content .color-table td {
+    padding: 3px;
+}
+
+.print-content .color-table td:first-child {
+    width: 20%;
+}
+
+.print-content .color-table td:last-child {
+    width: 80%;
+}
+
+.grid-table td,
+.grid-table th {
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    font-size: 9px;
+}
