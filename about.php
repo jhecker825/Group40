@@ -3,75 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>About Us — Colorify</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <h1 class="logo-text">[LOGO]</h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php" class="active">About</a></li>
-                <li><a href="color.php">Color Coordinating</a></li>
-            </ul>
+
+<header>
+    <img src="Colorify_Logo.png" alt="Colorify Logo" class="logo">
+    <div class="brand">
+        <h1>colorify</h1>
+        <p>Color Coordinate Generator</p>
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="about.php" class="active">About</a></li>
+        <li><a href="color.php">Color Coordinate</a></li>
+    </ul>
+</nav>
+
+<main>
+    <h2 class="page-title">About Our Team</h2>
+
+    <div class="member-card">
+        <img src="Wesley.jpg" alt="Wesley Johnson" class="member-avatar">
+        <div class="member-info">
+            <h3>Wesley Johnson</h3>
+            <p class="member-role">Group Member</p>
+            <p>Beyond the classroom, I enjoy playing video games, biking, and running. I am training for an upcoming marathon in May.</p>
         </div>
-    </nav>
+    </div>
 
-    <main class="container">
-        <section class="page-header">
-            <h1>About [COMPANY]</h1>
-        </section>
+    <!-- Team Member 2 -->
+    <div class="member-card">
+        <div class="member-avatar-placeholder">&#128100;</div>
+        <div class="member-info">
+            <h3>[Team Member 2 Name]</h3>
+            <p class="member-role">Group Member</p>
+            <p>[Team Member 2 bio goes here.]</p>
+        </div>
+    </div>
 
-        <section class="team-section">
-            <div class="team-member">
-                <div class="member-avatar">
-                    <img src="img/Joseph_Hecker.jpg" alt="Picture of Joseph Hecker">
-                </div>
-                <div class="member-info">
-                    <h2>Joseph Hecker</h2>
-                    <p class="member-bio">
-                        Hello, I'm Joseph Hecker, a computer science student as CSU and I am currently a senior. I am also a software engineer at CartoPac, where I work on GIS mapping software. I have experience in C# and C++.
-                    </p>
-                </div>
-            </div>
+    <!-- Team Member 3 -->
+    <div class="member-card">
+        <div class="member-avatar-placeholder">&#128100;</div>
+        <div class="member-info">
+            <h3>[Team Member 3 Name]</h3>
+            <p class="member-role">Group Member</p>
+            <p>[Team Member 3 bio goes here.]</p>
+        </div>
+    </div>
 
-            <div class="team-member">
-                <div class="member-avatar">[AVATAR 2]</div>
-                <div class="member-info">
-                    <h2>Team Member 2</h2>
-                    <p class="member-bio">
-                        
-                    </p>
-                </div>
-            </div>
+</main>
 
-            <div class="team-member">
-                <div class="member-avatar">[AVATAR 3]</div>
-                <div class="member-info">
-                    <h2>Team Member 3</h2>
-                    <p class="member-bio">
-                        
-                    </p>
-                </div>
-            </div>
+<footer>
+    <p>&copy; <?php echo date('Y'); ?> Colorify &mdash; Group 40</p>
+</footer>
 
-            <div class="team-member">
-                <div class="member-avatar">[AVATAR 4]</div>
-                <div class="member-info">
-                    <h2>Team Member 4</h2>
-                    <p class="member-bio">
-                        
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 [COMPANY]. All rights reserved.</p>
-    </footer>
 </body>
 </html>

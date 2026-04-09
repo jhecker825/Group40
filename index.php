@@ -3,59 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Coordinate Tool</title>
+    <title>Colorify — Color Coordinate Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <h1 class="logo-text">[LOGO]</h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="color.php">Color Coordinating</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <main class="container">
-        <section class="hero">
-            <h1>Welcome to [COMPANY]</h1>
-            <p class="subtitle">Your professional color coordination tool</p>
-            <p class="description">
-                [COMPANY] is a powerful web application designed to help you organize and manage color schemes efficiently. 
-                Create color coordinate grids, explore color combinations, and generate printable charts for your design projects.
-            </p>
-        </section>
+<header>
+    <img src="Colorify_Logo.png" alt="Colorify Logo" class="logo">
+    <div class="brand">
+        <h1>colorify</h1>
+        <p>Color Coordinate Generator</p>
+    </div>
+</header>
 
-        <section class="features">
-            <h2>What We Offer</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Color Coordination</h3>
-                    <p>Create customizable color grids with up to 26x26 dimensions and choose from 10 professional colors.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Easy to Use</h3>
-                    <p>Simple interface with intuitive controls to select colors and generate your coordinate sheets.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Print Ready</h3>
-                    <p>Generate printable versions of your color sheets optimized for 8.5x11 inch paper in portrait mode.</p>
-                </div>
-            </div>
-        </section>
+<nav>
+    <ul>
+        <li><a href="index.php" class="active">Home</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="color.php">Color Coordinate</a></li>
+    </ul>
+</nav>
 
-        <section class="cta-section">
-            <h2>Get Started</h2>
-            <p>Ready to coordinate your colors? Visit our <a href="color.php" class="cta-link">Color Coordinating page</a> to begin.</p>
-        </section>
-    </main>
+<main>
+    <div class="hero">
+        <img src="Colorify_Logo.png" alt="Colorify Logo" class="hero-logo">
+        <h2>Welcome to Colorify</h2>
+        <p>
+            Colorify is a professional color coordinate sheet generator. Build custom grids,
+            organize your color palettes, and generate printable coordinate sheets — all in one place.
+        </p>
+    </div>
 
-    <footer>
-        <p>&copy; 2025 [COMPANY]. All rights reserved.</p>
-    </footer>
+    <div class="nav-cards">
+        <a href="about.php" class="nav-card">
+            <div class="card-icon">&#128101;</div>
+            <h3>About Us</h3>
+            <p>Meet the team behind Colorify.</p>
+        </a>
+        <a href="color.php" class="nav-card">
+            <div class="card-icon">&#127775;</div>
+            <h3>Color Coordinate</h3>
+            <p>Generate a custom color coordinate sheet with your chosen grid size and colors.</p>
+        </a>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; <?php echo date('Y'); ?> Colorify &mdash; Group 40</p>
+</footer>
+
 </body>
 </html>
