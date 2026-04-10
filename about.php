@@ -47,11 +47,11 @@
 
     <!-- Team Member 3 -->
     <div class="member-card">
-        <div class="member-avatar-placeholder">&#128100;</div>
+        <img src="img/Nathan.png" alt="Nathan Anderson" class="member-avatar">
         <div class="member-info">
-            <h3>[Team Member 3 Name]</h3>
+            <h3>Nathan Anderson</h3>
             <p class="member-role">Group Member</p>
-            <p>[Team Member 3 bio goes here.]</p>
+            <p>I enjoy video games and traveling. I also like to work on coding projects. I play for the CSU deadlock team and my favorite country I've been to is Sweden.</p>
         </div>
     </div>
 
