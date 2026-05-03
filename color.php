@@ -105,6 +105,11 @@
                     $selected = $colorOptions[$i];
                 ?>
                 <tr>
+                    <td class="col-radio">
+                        <input type="radio" id="color-radio-<?php echo $i; ?>" name="active-color" 
+                               value="<?php echo $i; ?>" data-index="<?php echo $i; ?>"
+                               <?php echo ($i === 0) ? 'checked' : ''; ?>>
+                    </td>
                     <td class="col-dropdown">
                         <select id="color-select-<?php echo $i; ?>" data-index="<?php echo $i; ?>">
                             <?php foreach ($colorOptions as $color): ?>
@@ -121,6 +126,9 @@
                                   style="background-color: <?php echo $colorHex[$selected]; ?>;"></span>
                             <span class="color-label" id="label-<?php echo $i; ?>"><?php echo $selected; ?></span>
                         </div>
+                    </td>
+                    <td class="col-coordinates">
+                        <span id="coordinates-<?php echo $i; ?>"></span>
                     </td>
                 </tr>
                 <?php endfor; ?>
@@ -144,7 +152,7 @@
                             <?php elseif ($col === 0): ?>
                                 <td class="header-cell"><?php echo $row; ?></td>
                             <?php else: ?>
-                                <td></td>
+                                <td class="grid-cell" data-coord="<?php echo $letters[$col - 1] . $row; ?>"></td>
                             <?php endif; ?>
                         <?php endfor; ?>
                     </tr>
@@ -164,6 +172,12 @@
         <script>
         const COLOR_HEX = <?php echo $colorHexJson; ?>;
         const numSelects = <?php echo $numColors; ?>;
+        const numCols = <?php echo $n; ?>;
+        const cellColors = {};
+        const colorCoordinates = {};
+        for (let i = 0; i < numSelects; i++) {
+            colorCoordinates[i] = [];
+        }
 
         function getSelected() {
             const vals = [];
@@ -171,6 +185,11 @@
                 vals.push(document.getElementById('color-select-' + i).value);
             }
             return vals;
+        }
+
+        function getActiveColorIndex() {
+            const checked = document.querySelector('input[name="active-color"]:checked');
+            return checked ? parseInt(checked.value) : 0;
         }
 
         function updatePreview(index, colorName) {
@@ -185,18 +204,109 @@
             el._hideTimer = setTimeout(() => { el.style.display = 'none'; }, 3500);
         }
 
+        function sortCoordinates(coords) {
+            return coords.sort((a, b) => {
+                const letterA = a.charCodeAt(0);
+                const letterB = b.charCodeAt(0);
+                if (letterA !== letterB) return letterA - letterB;
+                const numA = parseInt(a.substring(1));
+                const numB = parseInt(b.substring(1));
+                return numA - numB;
+            });
+        }
+
+        function updateCoordinatesDisplay(colorIndex) {
+            const coords = colorCoordinates[colorIndex];
+            const sorted = sortCoordinates([...coords]);
+            const display = sorted.join(', ');
+            document.getElementById('coordinates-' + colorIndex).textContent = display;
+        }
+
+        function updateAllCoordinatesDisplay() {
+            for (let i = 0; i < numSelects; i++) {
+                updateCoordinatesDisplay(i);
+            }
+        }
+
+        function paintCell(coord, colorIndex) {
+            const cell = document.querySelector(`[data-coord="${coord}"]`);
+            if (!cell) return;
+
+            const colorName = document.getElementById('color-select-' + colorIndex).value;
+            const hexColor = COLOR_HEX[colorName];
+            
+            cell.style.backgroundColor = hexColor;
+            cell.dataset.paintedColor = colorIndex;
+        }
+
+        function clearCell(coord) {
+            const cell = document.querySelector(`[data-coord="${coord}"]`);
+            if (!cell) return;
+            cell.style.backgroundColor = '';
+            delete cell.dataset.paintedColor;
+        }
+
+        function addCoordinate(colorIndex, coord) {
+            if (!colorCoordinates[colorIndex].includes(coord)) {
+                colorCoordinates[colorIndex].push(coord);
+            }
+            updateCoordinatesDisplay(colorIndex);
+        }
+
+        function removeCoordinate(colorIndex, coord) {
+            const idx = colorCoordinates[colorIndex].indexOf(coord);
+            if (idx > -1) {
+                colorCoordinates[colorIndex].splice(idx, 1);
+            }
+            updateCoordinatesDisplay(colorIndex);
+        }
+
+        const cells = document.querySelectorAll('.grid-cell');
+        cells.forEach(cell => {
+            cell.addEventListener('click', function() {
+                const coord = this.dataset.coord;
+                const activeColorIndex = getActiveColorIndex();
+
+                if (this.dataset.paintedColor === undefined) {
+                    // Cell is empty, paint it
+                    cellColors[coord] = activeColorIndex;
+                    paintCell(coord, activeColorIndex);
+                    addCoordinate(activeColorIndex, coord);
+                } else {
+                    const currentColorIndex = parseInt(this.dataset.paintedColor);
+                    if (currentColorIndex === activeColorIndex) {
+                        clearCell(coord);
+                        delete cellColors[coord];
+                        removeCoordinate(currentColorIndex, coord);
+                    } else {
+                        removeCoordinate(currentColorIndex, coord);
+                        cellColors[coord] = activeColorIndex;
+                        paintCell(coord, activeColorIndex);
+                        addCoordinate(activeColorIndex, coord);
+                    }
+                }
+            });
+        });
+
+        const radios = document.querySelectorAll('input[name="active-color"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+            });
+        });
+
         for (let i = 0; i < numSelects; i++) {
             const sel = document.getElementById('color-select-' + i);
             sel._prev = sel.value;
 
             sel.addEventListener('change', function () {
-                const chosen = this.value;
+                const oldColorName = this._prev;
+                const newColorName = this.value;
                 const myIndex = parseInt(this.dataset.index);
                 const allVals = getSelected();
 
                 let duplicate = false;
                 for (let j = 0; j < numSelects; j++) {
-                    if (j !== myIndex && allVals[j] === chosen) {
+                    if (j !== myIndex && allVals[j] === newColorName) {
                         duplicate = true;
                         break;
                     }
@@ -206,8 +316,14 @@
                     this.value = this._prev;
                     showWarning();
                 } else {
-                    this._prev = chosen;
-                    updatePreview(myIndex, chosen);
+                    const coordsToRepaint = [...colorCoordinates[myIndex]];
+                    
+                    coordsToRepaint.forEach(coord => {
+                        paintCell(coord, myIndex);
+                    });
+                    
+                    this._prev = newColorName;
+                    updatePreview(myIndex, newColorName);
                 }
             });
         }
