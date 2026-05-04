@@ -21,6 +21,7 @@
         <li><a href="index.php" class="active">Home</a></li>
         <li><a href="about.php">About</a></li>
         <li><a href="color.php">Color Coordinate</a></li>
+        <li><a href="colors.php">Color Selection</a></li>
     </ul>
 </nav>
 
@@ -44,6 +45,11 @@
             <div class="card-icon">&#127775;</div>
             <h3>Color Coordinate</h3>
             <p>Generate a custom color coordinate sheet with your chosen grid size and colors.</p>
+        </a>
+        <a href="colors.php" class="nav-card">
+            <div class="card-icon">&#127912;</div>
+            <h3>Color Selection</h3>
+            <p>Add, edit, and delete colors stored in the database.</p>
         </a>
     </div>
 </main>
