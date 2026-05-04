@@ -337,6 +337,10 @@
             params.set('n', n);
             params.set('nc', nc);
             colors.forEach(c => params.append('color[]', c));
+            for (let i = 0; i < nc; i++) {
+                const sorted = sortCoordinates([...colorCoordinates[i]]);
+                params.append('coords[]', sorted.join(', '));
+            }
             window.location.href = 'print.php?' + params.toString();
         }
         </script>

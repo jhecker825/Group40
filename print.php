@@ -14,6 +14,12 @@
             size: letter portrait;
             margin: 1cm;
         }
+        @media print {
+            body.print-page {
+                filter: grayscale(100%);
+                -webkit-filter: grayscale(100%);
+            }
+        }
     </style>
 </head>
 <body class="print-page">
@@ -21,11 +27,25 @@
 <main>
 
     <?php
-    $n         = isset($_GET['n'])  ? max(1, min(26, (int)$_GET['n']))  : 1;
-    $numColors = isset($_GET['nc']) ? max(1, min(10, (int)$_GET['nc'])) : 1;
-    $colors    = isset($_GET['color']) ? (array)$_GET['color'] : [];
+    $n         = isset($_GET['n'])      ? max(1, min(26, (int)$_GET['n']))  : 1;
+    $numColors = isset($_GET['nc'])     ? max(1, min(10, (int)$_GET['nc'])) : 1;
+    $colors    = isset($_GET['color'])  ? (array)$_GET['color']             : [];
+    $rawCoords = isset($_GET['coords']) ? (array)$_GET['coords']            : [];
 
     $validColors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Grey', 'Brown', 'Black', 'Teal'];
+
+    $colorHex = [
+        'Red'    => '#DC2626',
+        'Orange' => '#EA580C',
+        'Yellow' => '#CA8A04',
+        'Green'  => '#16A34A',
+        'Blue'   => '#2563EB',
+        'Purple' => '#7C3AED',
+        'Grey'   => '#6B7280',
+        'Brown'  => '#92400E',
+        'Black'  => '#111827',
+        'Teal'   => '#0D9488',
+    ];
 
     $colors = array_values(array_filter($colors, fn($c) => in_array($c, $validColors)));
 
@@ -49,10 +69,14 @@
     </div>
 
     <table class="print-color-table">
-        <?php for ($i = 0; $i < $numColors; $i++): ?>
+        <?php for ($i = 0; $i < $numColors; $i++):
+            $colorName  = $colors[$i];
+            $hex        = $colorHex[$colorName];
+            $coordsText = isset($rawCoords[$i]) ? trim($rawCoords[$i]) : '';
+        ?>
         <tr>
-            <td class="col-dropdown"><?php echo htmlspecialchars($colors[$i]); ?></td>
-            <td class="col-preview"><?php echo htmlspecialchars($colors[$i]); ?></td>
+            <td class="col-dropdown"><?php echo htmlspecialchars($colorName); ?> &mdash; <?php echo htmlspecialchars($hex); ?></td>
+            <td class="col-preview"><?php echo htmlspecialchars($coordsText); ?></td>
         </tr>
         <?php endfor; ?>
     </table>
