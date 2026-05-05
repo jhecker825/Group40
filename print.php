@@ -27,37 +27,18 @@
 <main>
 
     <?php
-    $n         = isset($_GET['n'])      ? max(1, min(26, (int)$_GET['n']))  : 1;
-    $numColors = isset($_GET['nc'])     ? max(1, min(10, (int)$_GET['nc'])) : 1;
-    $colors    = isset($_GET['color'])  ? (array)$_GET['color']             : [];
-    $rawCoords = isset($_GET['coords']) ? (array)$_GET['coords']            : [];
+    $n = isset($_GET['n']) ? max(1, min(26, (int)$_GET['n'])) : 1;
+    $numColors = isset($_GET['nc']) ? max(1, (int)$_GET['nc']) : 1;
+    $colorNames = isset($_GET['color_name']) ? (array)$_GET['color_name'] : [];
+    $colorHexes = isset($_GET['color_hex']) ? (array)$_GET['color_hex'] : [];
+    $rawCoords = isset($_GET['coords']) ? (array)$_GET['coords'] : [];
 
-    $validColors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Grey', 'Brown', 'Black', 'Teal'];
-
-    $colorHex = [
-        'Red'    => '#DC2626',
-        'Orange' => '#EA580C',
-        'Yellow' => '#CA8A04',
-        'Green'  => '#16A34A',
-        'Blue'   => '#2563EB',
-        'Purple' => '#7C3AED',
-        'Grey'   => '#6B7280',
-        'Brown'  => '#92400E',
-        'Black'  => '#111827',
-        'Teal'   => '#0D9488',
-    ];
-
-    $colors = array_values(array_filter($colors, fn($c) => in_array($c, $validColors)));
-
-    while (count($colors) < $numColors) {
-        foreach ($validColors as $vc) {
-            if (!in_array($vc, $colors)) {
-                $colors[] = $vc;
-                break;
-            }
-        }
+    $numColors = min($numColors, count($colorNames), count($colorHexes));
+    if ($numColors < 1) {
+        $numColors = 1;
+        $colorNames = [''];
+        $colorHexes = ['#000000'];
     }
-    $colors = array_slice($colors, 0, $numColors);
     ?>
 
     <div class="print-header">
@@ -70,8 +51,11 @@
 
     <table class="print-color-table">
         <?php for ($i = 0; $i < $numColors; $i++):
-            $colorName  = $colors[$i];
-            $hex        = $colorHex[$colorName];
+            $colorName  = trim((string)$colorNames[$i]);
+            $hex        = strtoupper(trim((string)$colorHexes[$i]));
+            if (!preg_match('/^#[0-9A-F]{6}$/', $hex)) {
+                $hex = '#000000';
+            }
             $coordsText = isset($rawCoords[$i]) ? trim($rawCoords[$i]) : '';
         ?>
         <tr>

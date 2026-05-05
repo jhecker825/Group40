@@ -1,23 +1,23 @@
 /*
  * Colorify — Color Coordinate Generator | Group 40
  *
- * Color Palette (7 unique colors, excluding pure black/white):
- *   #1D2C5E — Navy Blue
- *   #F5F7FA — Light Grey
- *   #14532D — Dark Green
- *   #991B1B — Deep Red
- *   #EFF6FF — Light Blue
- *   #FEF3C7 — Light Amber
- *   #78350F — Dark Brown
+ * colors used (excluding pure black/white):
+ *   #1D2C5E — navy blue
+ *   #F5F7FA — light grey
+ *   #14532D — dark green
+ *   #991B1B — deep red
+ *   #EFF6FF — light blue
+ *   #FEF3C7 — light amber
+ *   #78350F — dark brown
  *
- * Contrast Ratios (WCAG AAA minimum: 7:1):
- *   #FFFFFF on #1D2C5E  13.4:1  ✓
- *   #1D2C5E on #F5F7FA  12.5:1  ✓
- *   #1D2C5E on #EFF6FF  12.2:1  ✓
- *   #1D2C5E on #FEF3C7  11.9:1  ✓
- *   #FFFFFF on #14532D   9.1:1  ✓
- *   #FFFFFF on #991B1B   8.4:1  ✓
- *   #78350F on #FFFFFF   9.1:1  ✓
+ * contrast ratios (webaim AAA minimum 7:1):
+ *   #FFFFFF on #1D2C5E  13.4:1
+ *   #1D2C5E on #F5F7FA  12.5:1
+ *   #1D2C5E on #EFF6FF  12.2:1
+ *   #1D2C5E on #FEF3C7  11.9:1
+ *   #FFFFFF on #14532D   9.1:1
+ *   #FFFFFF on #991B1B   8.4:1
+ *   #78350F on #FFFFFF   9.1:1
  */
 
 *, *::before, *::after {
@@ -470,7 +470,6 @@ body.print-page {
     main { padding: 0.5cm; }
 }
 
-/* ── Color Selection page (colors.php) ──────────────────────────────────── */
 .card-heading {
     font-size: 1.15rem;
     font-weight: 700;
@@ -523,7 +522,6 @@ body.print-page {
     font-size: 0.93rem;
 }
 
-/* Hex input with color picker inline */
 .hex-input-wrap {
     display: flex;
     align-items: center;
@@ -556,7 +554,6 @@ body.print-page {
     border-color: #1D2C5E;
 }
 
-/* Text inputs on the color selection page */
 .form-group input[type="text"] {
     padding: 0.5rem 0.75rem;
     border: 2px solid #CBD5E1;
@@ -571,7 +568,6 @@ body.print-page {
     border-color: #1D2C5E;
 }
 
-/* Select elements on the color selection page */
 .form-group select {
     padding: 0.5rem 0.75rem;
     border: 2px solid #CBD5E1;
@@ -588,7 +584,6 @@ body.print-page {
     border-color: #1D2C5E;
 }
 
-/* Delete confirmation panel */
 .cs-confirm-panel {
     background-color: #FEF3C7;
     border-left: 4px solid #78350F;
@@ -603,20 +598,17 @@ body.print-page {
     font-size: 0.95rem;
 }
 
-/* Danger button */
 .btn-danger {
     background-color: #991B1B;
     color: #FFFFFF;
 }
 
-/* Success alert */
 .alert-success {
     background-color: #DCFCE7;
     color: #14532D;
     border-left: 4px solid #14532D;
 }
 
-/* Work-in-progress card */
 .cs-wip {
     border-left: 4px solid #CA8A04;
 }
