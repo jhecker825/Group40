@@ -1,15 +1,9 @@
 <?php
-/**
- * db.php — Database connection for Colorify (Group 40)
- *
- * NOTE: Each team member must update the credentials below
- *       to match their own individual database.
- */
 
 $host   = 'localhost';
-$dbname = 'your_database_name'; // TODO: replace with your database name
-$user   = 'your_username';      // TODO: replace with your database username
-$pass   = 'your_password';      // TODO: replace with your database password
+$dbname = 'your_database_name';
+$user   = 'your_username';
+$pass   = 'your_password';
 
 try {
     $pdo = new PDO(
@@ -26,7 +20,6 @@ try {
     '</p>');
 }
 
-// Create the colors table if it does not already exist
 $pdo->exec("
     CREATE TABLE IF NOT EXISTS colors (
         id        INT          NOT NULL AUTO_INCREMENT,
@@ -38,7 +31,6 @@ $pdo->exec("
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 ");
 
-// Pre-populate with the 10 default colors if the table is currently empty
 $rowCount = (int) $pdo->query("SELECT COUNT(*) FROM colors")->fetchColumn();
 if ($rowCount === 0) {
     $defaults = [
